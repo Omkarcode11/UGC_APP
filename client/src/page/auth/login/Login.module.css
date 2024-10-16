@@ -1,0 +1,54 @@
+.container { 
+   display: flex;
+   align-items: center;
+   /* margin-top: 5rem; */
+   padding-top: 5rem;
+   flex-flow: column;
+   height: 100vh;
+}
+
+h1{
+    padding: 1rem 0rem;
+}
+
+.form {
+    background-color: #ffffff;
+    color: #3a414d;
+    height: fit-content;
+    padding: 2rem;
+    width: 100vw;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.form > div>input,select,button {
+    margin: 0.2rem 0rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.4rem;
+}
+
+input,select {
+    outline:  none;
+    border: 1px solid gray;
+}
+
+.form >div{
+    display: flex;
+    flex-flow: column wrap;
+    text-align: start;
+    padding: 0.5rem 0rem;
+
+}
+
+a {
+    text-decoration: none;
+    color: #5146e3;
+    text-align: center;
+}
+
+.button {
+    background-color: #5146e3;
+    color:  white;
+    border: none;
+}
