@@ -1,0 +1,81 @@
+/* Applicants.module.css */
+.container{
+    padding: 1rem;
+}
+
+
+.applicantsContainer {
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  
+  .header {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .applicantsList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+
+  
+  .applicantDetails {
+    flex: 1;
+  }
+
+  .name{
+    padding-right: 1rem;
+  }
+  
+  .status {
+    margin-right: 10px;
+  }
+  
+  .statusPending {
+    color: #ffc107;
+  }
+  
+  .statusApproved {
+    color: #28a745;
+  }
+  
+  .statusRejected {
+    color: #dc3545;
+  }
+  
+  .buttons {
+    display: flex;
+}
+
+button {
+    padding: 6px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.approve {
+    background-color: #dfffe7;
+    color: white;
+    color: black;
+}
+
+  button.reject {
+    background-color: #ffdbdf;
+    color: white;
+    color: black;
+}

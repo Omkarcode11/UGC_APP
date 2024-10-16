@@ -1,0 +1,36 @@
+.container {
+  border: 3px solid #e8ebea;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0rem;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid #e8ebea;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+
+.image {
+  height: 2rem;
+  width: 2rem;
+}
+
+.btn {
+  background-color: white;
+  border: 3px solid #e8ebea;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0rem;
+}

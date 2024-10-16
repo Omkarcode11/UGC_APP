@@ -1,0 +1,75 @@
+/* ContentUpload.module.css */
+.container{
+  background-color: rgba(0, 0, 0, 0.399);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+.contentUpload {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .closeSVG{
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .uploadForm {
+    margin: 20px 0;
+  }
+  
+  .filePreview {
+    margin: 10px 0;
+  }
+  
+  .img {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .video {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .errorMessage {
+    color: red;
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .successMessage {
+    color: green;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #0f1726;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  .button:hover {
+    background-color: #3f3f3f;
+  }
+  

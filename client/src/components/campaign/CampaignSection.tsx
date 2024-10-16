@@ -25,7 +25,7 @@ function CampaignSection({}: Props) {
           <td>Alfreds Futterkiste</td>
           <td>Maria Anders</td>
           <td>Germany</td>
-          <td>Germany</td>
+          <td>Manage</td>
         </tr>
       </table>
       </div>
