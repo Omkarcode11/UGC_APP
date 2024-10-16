@@ -5,7 +5,7 @@ type Props = {};
 function Signup({}: Props) {
   return (
     <div className={classes.container}>
-      <h1>Create a new Account</h1>
+      <h1 className={classes.header}>Create a new Account</h1>
       <form className={classes.form}>
         <div>
           <label>Name</label>
@@ -25,7 +25,7 @@ function Signup({}: Props) {
         </div>
         <div>
           <label>I am a </label>
-          <select name="type">
+          <select className={classes.select} name="type">
             <option value={"brand"}>Brand</option>
             <option value={"creator"}>Creator</option>
           </select>

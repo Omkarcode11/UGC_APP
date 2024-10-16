@@ -7,7 +7,7 @@
    height: 100vh;
 }
 
-h1{
+.header{
     padding: 1rem 0rem;
 }
 
@@ -21,14 +21,14 @@ h1{
     text-align: center;
 }
 
-.form > div>input,select,button {
+.form > div>input,.select,.button {
     margin: 0.2rem 0rem;
     padding: 0.5rem;
     font-size: 1rem;
     border-radius: 0.4rem;
 }
 
-input,select {
+input,.select {
     outline:  none;
     border: 1px solid gray;
 }
