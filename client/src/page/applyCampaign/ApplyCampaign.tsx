@@ -8,6 +8,11 @@ type Props = {}
 function ApplyCampaign({}: Props) {
     let navigate = useNavigate()
     let [applyStatus,setApplyStatus] = useState(true)
+
+    const applyCampaignHandler = ()=>{
+        setApplyStatus(false)
+    }
+
   return (
     <div className={classes.container}>
         <div className={classes.innerContainer}>
@@ -22,14 +27,14 @@ function ApplyCampaign({}: Props) {
     
     <p className={classes.task}>Create 3-5 photos or a 30-second video featuring our product in outodoo summer setting </p>
     <form className={classes.form}>
-    {!applyStatus ?
+    {applyStatus ?
     <textarea className={classes.input} placeholder="Tell us why your're a great fit for this campaign..." rows={5} />
 :<div>
     <div className={classes.applied}><img className={classes.correct} src={correctSVG}/> Your application has been submitted successfully!</div>
     <div className={classes.message}>Your application is currently under review.</div>
     </div>}
-    {!applyStatus &&
-    <button className={classes.btn}>Apply for Campaign</button>
+    {applyStatus &&
+    <button className={classes.btn} onClick={applyCampaignHandler}>Apply for Campaign</button>
     }
     <button className={classes.btn} onClick={()=>navigate('/dashboard/creator')}>Go to the Dashboard</button>
     </form>

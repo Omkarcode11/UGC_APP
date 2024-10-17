@@ -25,8 +25,12 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password } = req.body;
-    const user = yield User_1.User.findOne({ where: { email } });
+    let { email, password } = req.body;
+    email = email.trim();
+    password = password.trim();
+    if (!email || !email.length)
+        return res.status(400).json({ message: "Invalid mail" });
+    const user = yield User_1.User.findOne({ email });
     if (!user || !(yield bcrypt_1.default.compare(password, user.passwordHash))) {
         return res.status(401).json({ message: "Invalid credentials" });
     }

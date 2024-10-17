@@ -1,34 +1,57 @@
-import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import mongoose, { Schema, Document } from 'mongoose';
 import { Campaign } from './Campaign';
 import { Application } from './Application';
 
-@Table
-export class User extends Model {
-  @Column({
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
-    primaryKey: true,
-  })
-  id!: string;
-
-  @Column(DataType.STRING)
-  name!: string;
-
-  @Column({
-    type: DataType.STRING,
-    unique: true,
-  })
-  email!: string;
-
-  @Column(DataType.STRING)
-  passwordHash!: string;
-
-  @Column(DataType.ENUM('BRAND', 'CREATOR'))
-  role!: 'BRAND' | 'CREATOR';
-
-  @HasMany(() => Campaign)
-  campaigns!: Campaign[];
-
-  @HasMany(() => Application)
-  applications!: Application[];
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  passwordHash: string;
+  role: 'BRAND' | 'CREATOR';
+  campaigns: mongoose.Types.ObjectId[];
+  applications: mongoose.Types.ObjectId[];
 }
+
+// Create the User schema
+const UserSchema: Schema = new Schema(
+  {
+    _id: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId(),
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    passwordHash: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ['BRAND', 'CREATOR'],
+      required: true,
+    },
+    campaigns: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Campaign',
+      },
+    ],
+    applications: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Application',
+      },
+    ],
+  },
+  {
+    timestamps: true, // Adds createdAt and updatedAt fields automatically
+  }
+);
+
+export const User = mongoose.model<IUser>('User', UserSchema);

@@ -1,37 +1,50 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo, HasOne } from 'sequelize-typescript';
-import { User } from './User';
-import { Campaign } from './Campaign';
-import { Submission } from './Submission';
+import mongoose, { Schema, Document } from "mongoose";
 
-@Table
-export class Application extends Model {
-  @Column({
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
-    primaryKey: true,
-  })
-  id!: string;
-
-  @ForeignKey(() => User)
-  @Column(DataType.UUID)
-  creatorId!: string;
-
-  @BelongsTo(() => User)
-  creator!: User;
-
-  @ForeignKey(() => Campaign)
-  @Column(DataType.UUID)
-  campaignId!: string;
-
-  @BelongsTo(() => Campaign)
-  campaign!: Campaign;
-
-  @Column(DataType.ENUM('PENDING', 'APPROVED', 'REJECTED'))
-  status!: 'PENDING' | 'APPROVED' | 'REJECTED';
-
-  @Column(DataType.DATE)
-  submittedAt!: Date;
-
-  @HasOne(() => Submission)
-  submission!: Submission;
+export interface IApplication extends Document {
+  creatorId: mongoose.Types.ObjectId;
+  campaignId: mongoose.Types.ObjectId;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  submittedAt: Date;
+  submission: mongoose.Types.ObjectId;
 }
+
+// Create the Application schema
+const ApplicationSchema: Schema = new Schema(
+  {
+    _id: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId(),
+    },
+    creatorId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    campaignId: {
+      type: Schema.Types.ObjectId,
+      ref: "Campaign",
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["PENDING", "APPROVED", "REJECTED"],
+      default: "PENDING",
+    },
+    submittedAt: {
+      type: Date,
+      default: Date.now,
+    },
+    submission: {
+      type: Schema.Types.ObjectId,
+      ref: "Submission",
+    },
+  },
+  {
+    timestamps: true, // Adds createdAt and updatedAt fields automatically
+  }
+);
+
+export const Application = mongoose.model<IApplication>(
+  "Application",
+  ApplicationSchema
+);
