@@ -1,5 +1,6 @@
 import classes from "./AvailableCampaignCard.module.css";
 import calenderSVG from "./../../../assets/calender.svg";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
@@ -8,6 +9,7 @@ type Props = {
 };
 
 function AvailableCampaignCard({ title, subTitle, date }: Props) {
+  let navigate = useNavigate()
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>{title}</h2>
@@ -15,7 +17,7 @@ function AvailableCampaignCard({ title, subTitle, date }: Props) {
       <p>
       <img className={classes.image} src={calenderSVG} /> Deadline :{date}
       </p>
-      <button className={classes.btn}>Apply</button>
+      <button className={classes.btn} onClick={()=>navigate('/dashboard/creator/detail/sadf')}>Apply</button>
     </div>
 
   );

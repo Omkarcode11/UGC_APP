@@ -1,3 +1,4 @@
+import CampaignCard from '../cards/campaign/CampaignCard';
 import classes from './CampaignSection.module.css'
 
 type Props = {};
@@ -15,17 +16,9 @@ function CampaignSection({}: Props) {
           <th>Application</th>
           <th>Action</th>
         </tr>
+        <CampaignCard applicants={15} name='React.js' status='active'/>
+        <CampaignCard applicants={48} name='Next.js' status='completed'/>
         <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Manage</td>
         </tr>
       </table>
       </div>

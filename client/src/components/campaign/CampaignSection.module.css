@@ -23,14 +23,16 @@
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width:100%;
+
 }
 
 td,
 th {
   border: 1px solid #ffffff;
-  text-align: left;
+  text-align: center;
   padding: 8px;
   border-top: 1px solid #e6e6e6;
+
 }
 
 th {

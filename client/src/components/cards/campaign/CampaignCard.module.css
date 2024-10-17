@@ -1,0 +1,21 @@
+.btn {
+    border: 1px solid black ;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    background-color: transparent;
+}
+
+.active {
+    background-color: black;
+    padding: 0.3rem 1rem ;
+    color: white;
+    border-radius: 0.3rem;
+
+}
+
+.completed {
+    background-color: #f5f6fa;
+    padding: 0.3rem 1rem ;
+    border-radius: 0.3rem;
+}
+

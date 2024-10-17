@@ -15,8 +15,16 @@
 
   
   .header {
+    display: flex;
+    justify-content: space-between;
     font-size: 20px;
     margin-bottom: 10px;
+  }
+
+  .management{
+    background-color: black;
+    color: white;
+    font-weight: 500;
   }
   
   .description {

@@ -7,6 +7,8 @@ import Creator from "./page/dashboard/creator/Creator";
 import CreateCampaign from "./components/createCampaign/CreateCampaign";
 import ContentUpload from "./components/contentUpload/ContentUpload";
 import Applicants from "./components/applicants/Applicants";
+import ApplyCampaign from "./page/applyCampaign/ApplyCampaign";
+import CampaignContentManagement from "./page/management/CampaignContentManagement";
 
 function App() {
   let router = createBrowserRouter([
@@ -19,6 +21,7 @@ function App() {
         { path: "create", element: <CreateCampaign /> },
       ],
     },
+    {path:'/brand/management/:id',element:<CampaignContentManagement/>},
     {path:'/dashboard/brand/detail/:id',element:<Applicants/>},
     {
       path: "/dashboard/creator",
@@ -30,6 +33,7 @@ function App() {
         },
       ],
     },
+    {path:'/dashboard/creator/detail/:id',element:<ApplyCampaign/>},
   ]);
 
   return <RouterProvider router={router} />;
