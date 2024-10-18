@@ -1,16 +1,20 @@
 import { Router } from "express";
-import { Campaign } from "../models/Campaign";
-import { Application } from "../models/Application";
-import { Submission } from "../models/Submission";
+
 import {
   applyCampaign,
   createCampaign,
+  getMyCampaign,
 } from "../controllers/compaign.controller";
+import { verifyToken } from "../middleware/verifyToken";
+import { isBrand } from "../middleware/isBrand";
 
 const router = Router();
 
+// Get My Campaign (Brand)
+router.get("/", verifyToken, isBrand, getMyCampaign);
+
 // Create Campaign (Brand)
-router.post("/", createCampaign);
+router.post("/", verifyToken, isBrand, createCampaign);
 
 // Apply to Campaign (Creator)
 router.post("/:campaignId/apply", applyCampaign);

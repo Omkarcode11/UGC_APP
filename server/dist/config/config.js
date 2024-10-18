@@ -18,7 +18,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 // Load environment variables from .env file
 dotenv_1.default.config();
 // Get the MongoDB URI from the environment variable or use a default value
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/omkar";
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/UGC";
 // Create a function to connect to MongoDB
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {

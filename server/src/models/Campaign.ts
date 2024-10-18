@@ -32,7 +32,7 @@ const CampaignSchema: Schema = new Schema(
       type: String,
     },
     deadline: {
-      type: Date,
+      type: String,
       required: true,
     },
     applications: [

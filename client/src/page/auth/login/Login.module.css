@@ -5,6 +5,7 @@
    padding-top: 5rem;
    flex-flow: column;
    height: 100vh;
+   background-color: #f2f5f7;
 }
 
 .header{
@@ -16,9 +17,10 @@
     color: #3a414d;
     height: fit-content;
     padding: 2rem;
-    width: 100vw;
+    width: 95vw;
     border-radius: 1rem;
     text-align: center;
+
 }
 
 .form > div>input,.select,.button {

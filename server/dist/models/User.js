@@ -46,23 +46,18 @@ const UserSchema = new mongoose_1.Schema({
     },
     role: {
         type: String,
-        enum: ['BRAND', 'CREATOR'],
+        enum: ["BRAND", "CREATOR"],
         required: true,
     },
-    campaigns: [
-        {
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Campaign',
-        },
-    ],
+    campaigns: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Campaign" }],
     applications: [
         {
             type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Application',
+            ref: "Application",
         },
     ],
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
 });
-exports.User = mongoose_1.default.model('User', UserSchema);
+exports.User = mongoose_1.default.model("User", UserSchema);
 //# sourceMappingURL=User.js.map

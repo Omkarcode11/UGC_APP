@@ -5,10 +5,13 @@
   flex-flow: column;
   height: 100vh;
   overflow: hidden;
+  background-color: #f2f5f7;
 }
 
 .header {
-  padding: 1rem 0rem;
+  padding: 2rem 0rem 2rem 0rem;
+  font-weight: 900;
+
 }
 
 .form {
@@ -16,7 +19,7 @@
   color: #3a414d;
   height: fit-content;
   padding: 2rem;
-  width: 100vw;
+  width: 95vw;
   border-radius: 1rem;
   text-align: center;
 }

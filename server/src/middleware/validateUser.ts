@@ -15,7 +15,7 @@ export const validateUser = [
     .isEmail()
     .withMessage("Email must be valid."),
 
-  body("passwordHash")
+  body("password")
     .notEmpty()
     .withMessage("Password hash is required.")
     .isLength({ min: 8 })

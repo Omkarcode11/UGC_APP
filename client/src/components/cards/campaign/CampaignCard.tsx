@@ -4,19 +4,24 @@ import classes from "./CampaignCard.module.css";
 type Props = {
   name: string;
   applicants: number;
-  status: "active" | "completed";
+  status: string;
 };
 
 function CampaignCard({ name, applicants, status }: Props) {
 let navigate = useNavigate()
   let cls = status == "active" ? classes.active : classes.completed;
+
+  let currentDate = new Date()
+  let selectedDate = new Date(status)
+
+  let state = (currentDate.valueOf()>selectedDate.valueOf())?"completed":"active"
   
 
   return (
     <tr>
       <td>{name}</td>
       <td className={classes.status} ><span className={cls}>
-        {status}
+        {state}
         </span>
         </td>
       <td>{applicants}</td>

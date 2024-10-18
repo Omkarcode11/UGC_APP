@@ -44,7 +44,7 @@ const CampaignSchema = new mongoose_1.Schema({
         type: String,
     },
     deadline: {
-        type: Date,
+        type: String,
         required: true,
     },
     applications: [

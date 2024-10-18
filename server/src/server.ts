@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth";
 import campaignRoutes from "./routes/campaign";
 import { connectDB } from "./config/config";
+import cors from 'cors'
 
 dotenv.config();
 
+
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.use("/api/auth", authRoutes);
 app.use("/api/campaigns", campaignRoutes);

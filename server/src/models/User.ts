@@ -1,12 +1,12 @@
-import mongoose, { Schema, Document } from 'mongoose';
-import { Campaign } from './Campaign';
-import { Application } from './Application';
+import mongoose, { Schema, Document } from "mongoose";
+import { Campaign } from "./Campaign";
+import { Application } from "./Application";
 
 export interface IUser extends Document {
   name: string;
   email: string;
   passwordHash: string;
-  role: 'BRAND' | 'CREATOR';
+  role: "BRAND" | "CREATOR";
   campaigns: mongoose.Types.ObjectId[];
   applications: mongoose.Types.ObjectId[];
 }
@@ -33,19 +33,14 @@ const UserSchema: Schema = new Schema(
     },
     role: {
       type: String,
-      enum: ['BRAND', 'CREATOR'],
+      enum: ["BRAND", "CREATOR"],
       required: true,
     },
-    campaigns: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Campaign',
-      },
-    ],
+    campaigns: [{ type: Schema.Types.ObjectId, ref: "Campaign" }],
     applications: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Application',
+        ref: "Application",
       },
     ],
   },
@@ -54,4 +49,4 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-export const User = mongoose.model<IUser>('User', UserSchema);
+export const User = mongoose.model<IUser>("User", UserSchema);

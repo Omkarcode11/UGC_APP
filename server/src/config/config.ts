@@ -6,7 +6,7 @@ dotenv.config();
 
 // Get the MongoDB URI from the environment variable or use a default value
 const mongoURI: string =
-  process.env.MONGO_URI || "mongodb://localhost:27017/omkar";
+  process.env.MONGO_URI || "mongodb://localhost:27017/UGC";
 
 // Create a function to connect to MongoDB
 export const connectDB = async (): Promise<void> => {
