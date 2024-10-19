@@ -63,7 +63,7 @@ const Applicants: React.FC = () => {
 
       // Make the API call to update the application status
       let res = await axios.post(
-        `${BASE_URL}/api/campaign/updateStatus/${id}`,
+        `${BASE_URL}/api/campaigns/updateStatus/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
