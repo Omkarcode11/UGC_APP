@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMyCampaign = exports.uploadContent = exports.applyCampaign = exports.createCampaign = void 0;
+exports.updateApplicationStatus = exports.getApplicants = exports.getMyCampaign = exports.uploadContent = exports.createCampaign = void 0;
 const Application_1 = require("../models/Application");
 const Submission_1 = require("../models/Submission");
 const validation_1 = require("../utils/validation");
@@ -38,7 +38,7 @@ const createCampaign = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const campaign = yield Campaign_1.Campaign.create({
             title,
             description,
-            deadline,
+            deadline: new Date(deadline),
             brandId: req.user.id,
         });
         // console.log(campaign._id, "from contaofsdaf");
@@ -67,17 +67,6 @@ const createCampaign = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.createCampaign = createCampaign;
-const applyCampaign = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { creatorId } = req.body;
-    const campaignId = req.params.campaignId;
-    const application = yield Application_1.Application.create({
-        campaignId,
-        creatorId,
-        status: "PENDING",
-    });
-    res.json({ message: "Application submitted successfully", application });
-});
-exports.applyCampaign = applyCampaign;
 const uploadContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { contentUrl, applicationId } = req.body;
     const submission = yield Submission_1.Submission.create({
@@ -97,6 +86,7 @@ const getMyCampaign = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             transform: (doc) => {
                 if (doc) {
                     return {
+                        id: doc._id,
                         title: doc.title,
                         deadline: doc.deadline,
                         applicationsCount: doc.applications.length,
@@ -123,4 +113,92 @@ const getMyCampaign = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     return;
 });
 exports.getMyCampaign = getMyCampaign;
+const getApplicants = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        // Find the campaign by ID and populate the 'applications' field
+        const campaign = yield Campaign_1.Campaign.findById(id)
+            .populate({
+            path: "applications",
+            select: "creatorId status",
+            populate: {
+                path: "creatorId",
+                select: "name",
+            },
+        })
+            .populate({
+            path: "applications",
+            populate: {
+                path: "campaignId",
+                select: "title description",
+            },
+        })
+            .select("campaignId creatorId")
+            .exec();
+        // If campaign is not found, return a 404 error
+        if (!campaign) {
+            res.status(404).json({ message: "Campaign not found" });
+            return;
+        }
+        // Send the populated applicants data as response
+        res.status(200).json(campaign.applications);
+    }
+    catch (err) {
+        // Proper error handling
+        if (err instanceof Error) {
+            res.status(500).json({ message: err.message });
+            return;
+        }
+        else {
+            res.status(500).json({ message: "An unexpected error occurred" });
+            return;
+        }
+    }
+});
+exports.getApplicants = getApplicants;
+const updateApplicationStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Destructure id from params and status from body
+        const { id } = req.params;
+        const { status } = req.body;
+        // Validate the input
+        if (!id || !status) {
+            res.status(400).json({
+                message: "Invalid input. 'id' and 'status' are required.",
+            });
+            return;
+        }
+        // Update the application status in the database
+        const application = yield Application_1.Application.findById(id);
+        // Check if the application exists
+        if (!application) {
+            res.status(404).json({
+                message: `Application with ID ${id} not found.`,
+            });
+            return;
+        }
+        //checking the pending status
+        if (application.status != "PENDING") {
+            res.status(400).json({
+                message: "Application status Already Updated",
+            });
+            return;
+        }
+        application.status = status;
+        yield application.save();
+        // Return success response
+        res.status(200).json({
+            message: "Status updated successfully.",
+        });
+    }
+    catch (error) {
+        // Handle any unexpected errors
+        console.error("Error updating application status:", error);
+        res.status(500).json({
+            message: "An error occurred while updating the status. Please try again later.",
+            error: error.message || "Internal Server Error",
+        });
+    }
+});
+exports.updateApplicationStatus = updateApplicationStatus;
 //# sourceMappingURL=compaign.controller.js.map

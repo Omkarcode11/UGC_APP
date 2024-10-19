@@ -1,8 +1,8 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 // Define the User and Application schema references
-import { User } from './User';
-import { Application } from './Application';
+import { User } from "./User";
+import { Application } from "./Application";
 
 export interface ICampaign extends Document {
   brandId: mongoose.Types.ObjectId;
@@ -21,7 +21,7 @@ const CampaignSchema: Schema = new Schema(
     },
     brandId: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     title: {
@@ -32,13 +32,13 @@ const CampaignSchema: Schema = new Schema(
       type: String,
     },
     deadline: {
-      type: String,
+      type: Date,
       required: true,
     },
     applications: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Application',
+        ref: "Application",
       },
     ],
   },
@@ -47,4 +47,4 @@ const CampaignSchema: Schema = new Schema(
   }
 );
 
-export const Campaign = mongoose.model<ICampaign>('Campaign', CampaignSchema);
+export const Campaign = mongoose.model<ICampaign>("Campaign", CampaignSchema);

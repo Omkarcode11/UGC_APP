@@ -34,9 +34,9 @@ const ApplicationSchema: Schema = new Schema(
       type: Date,
       default: Date.now,
     },
-    submission: {
-      type: Schema.Types.ObjectId,
-      ref: "Submission",
+    text: {
+      type: String,
+      required: true,
     },
   },
   {

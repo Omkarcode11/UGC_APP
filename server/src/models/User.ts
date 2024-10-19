@@ -9,6 +9,7 @@ export interface IUser extends Document {
   role: "BRAND" | "CREATOR";
   campaigns: mongoose.Types.ObjectId[];
   applications: mongoose.Types.ObjectId[];
+  appliedCampaign:mongoose.Types.ObjectId[];
 }
 
 // Create the User schema
@@ -43,7 +44,14 @@ const UserSchema: Schema = new Schema(
         ref: "Application",
       },
     ],
+    appliedCampaign: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Campaign",
+      },
+    ],
   },
+
   {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
   }

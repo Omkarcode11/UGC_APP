@@ -33,7 +33,7 @@ const CampaignSchema = new mongoose_1.Schema({
     },
     brandId: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         required: true,
     },
     title: {
@@ -44,17 +44,17 @@ const CampaignSchema = new mongoose_1.Schema({
         type: String,
     },
     deadline: {
-        type: String,
+        type: Date,
         required: true,
     },
     applications: [
         {
             type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'Application',
+            ref: "Application",
         },
     ],
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
 });
-exports.Campaign = mongoose_1.default.model('Campaign', CampaignSchema);
+exports.Campaign = mongoose_1.default.model("Campaign", CampaignSchema);
 //# sourceMappingURL=Campaign.js.map

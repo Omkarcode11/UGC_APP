@@ -50,9 +50,9 @@ const ApplicationSchema = new mongoose_1.Schema({
         type: Date,
         default: Date.now,
     },
-    submission: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: "Submission",
+    text: {
+        type: String,
+        required: true,
     },
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically

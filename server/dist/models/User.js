@@ -56,6 +56,12 @@ const UserSchema = new mongoose_1.Schema({
             ref: "Application",
         },
     ],
+    appliedCampaign: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: "Campaign",
+        },
+    ],
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
 });
