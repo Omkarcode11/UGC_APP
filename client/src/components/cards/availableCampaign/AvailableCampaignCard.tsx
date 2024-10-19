@@ -3,23 +3,30 @@ import calenderSVG from "./../../../assets/calender.svg";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
+  id : string,
   title: string;
-  subTitle: string;
+  description: string;
   date: string;
 };
 
-function AvailableCampaignCard({ title, subTitle, date }: Props) {
-  let navigate = useNavigate()
+function AvailableCampaignCard({ id,title, description, date }: Props) {
+  let navigate = useNavigate();
+  let deadline = new Date(date);
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>{title}</h2>
-      <p className={classes.subTitle}>{subTitle}</p>
+      <p className={classes.subTitle}>{description}</p>
       <p>
-      <img className={classes.image} src={calenderSVG} /> Deadline :{date}
+        <img className={classes.image} src={calenderSVG} /> Deadline :
+        {deadline.toLocaleDateString()}
       </p>
-      <button className={classes.btn} onClick={()=>navigate('/dashboard/creator/detail/sadf')}>Apply</button>
+      <button
+        className={classes.btn}
+        onClick={() => navigate("/dashboard/creator/detail/"+id)}
+      >
+        Apply
+      </button>
     </div>
-
   );
 }
 

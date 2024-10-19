@@ -1,19 +1,35 @@
-import classes from './AvailableCampaign.module.css'
-import AvailableCampaignCard from '../cards/availableCampaign/AvailableCampaignCard'
+import classes from "./AvailableCampaign.module.css";
+import AvailableCampaignCard from "../cards/availableCampaign/AvailableCampaignCard";
+import { useLoaderData } from "react-router-dom";
 
-type Props = {}
+type Props = {};
+
+type Campaign = {
+  title: string;
+  deadline: string;
+  description: string;
+  _id: string;
+};
+
 
 function AvailableCampaign({}: Props) {
+  let {campaign}  = useLoaderData() as any;
+  console.log(campaign, "from creator");
   return (
     <div className={classes.container}>
-        <h2 className={classes.header}>Available Campaign</h2>
-        
-        <AvailableCampaignCard date='2024-11-11' subTitle='create new always join us' title='React.js' key={'title'}/>
-        <AvailableCampaignCard date='2024-11-11' subTitle='create new always join us' title='React.js' key={'title'}/>
-        <AvailableCampaignCard date='2024-11-11' subTitle='create new always join us' title='React.js' key={'title'}/>
-        <AvailableCampaignCard date='2024-11-11' subTitle='create new always join us' title='React.js' key={'title'}/>
+      <h2 className={classes.header}>Available Campaign</h2>
+      {campaign &&
+        campaign?.map((campaign: Campaign) => (
+          <AvailableCampaignCard
+            id={campaign._id}
+            date={campaign.deadline.toString()}
+            key={campaign._id}
+            description={campaign.description}
+            title={campaign.title}
+          />
+        ))}
     </div>
-  )
+  );
 }
 
-export default AvailableCampaign
+export default AvailableCampaign;

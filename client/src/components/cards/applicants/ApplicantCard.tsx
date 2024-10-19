@@ -5,22 +5,24 @@ import rejectSVG from "./../../../assets/reject.svg";
 
 type Props = {
   name: string;
-  status: "pending" | "approved" | "rejected";
+  status: "PENDING" | "APPROVED" | "REJECTED";
   updateApplicantStatus: (
     name: string,
-    status: "approved" | "rejected"
+    status: "APPROVED" | "REJECTED",
+    id: string
   ) => void;
+  id: string;
 };
 
 // Helper function to capitalize status text
 const capitalize = (status: string) =>
   status.charAt(0).toUpperCase() + status.slice(1);
 
-function ApplicantCard({ name, status, updateApplicantStatus }: Props) {
+function ApplicantCard({ name, status, updateApplicantStatus, id }: Props) {
   let svg =
-    status == "approved"
+    status == "APPROVED"
       ? approvedSVG
-      : status == "pending"
+      : status == "PENDING"
       ? pendingSVG
       : rejectSVG;
   return (
@@ -37,17 +39,17 @@ function ApplicantCard({ name, status, updateApplicantStatus }: Props) {
         </p>
       </div>
 
-      {status === "pending" && (
+      {status === "PENDING" && (
         <div className={styles.buttons}>
           <button
             className={`${styles.approve}  ${styles.button}`}
-            onClick={() => updateApplicantStatus(name, "approved")}
+            onClick={() => updateApplicantStatus(name, "APPROVED", id)}
           >
             Approve
           </button>
           <button
             className={`${styles.reject} ${styles.button}`}
-            onClick={() => updateApplicantStatus(name, "rejected")}
+            onClick={() => updateApplicantStatus(name, "REJECTED", id)}
           >
             Reject
           </button>

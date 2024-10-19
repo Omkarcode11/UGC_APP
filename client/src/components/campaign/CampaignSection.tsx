@@ -12,10 +12,12 @@ type Campaign = {
   title: string;
   applicationsCount: number;
   deadline: string;
+  id:string
 };
 
 function CampaignSection({}: Props) {
   const campaigns = useLoaderData() as Campaign[]; // Cast to Campaign[]
+  console.log(campaigns)
 
   return (
     <div className={classes.container}>
@@ -31,13 +33,14 @@ function CampaignSection({}: Props) {
             </tr>
           </thead>
           <tbody>
-            {campaigns && campaigns.length > 0 ? (
+            {campaigns ? (
               campaigns.map((ele: Campaign) => (
                 <CampaignCard
                   key={ele.title} // Ensure unique key
                   applicants={ele.applicationsCount}
                   name={ele.title}
                   status={ele.deadline}
+                  id={ele.id}
                 />
               ))
             ) : (

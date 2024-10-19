@@ -3,13 +3,18 @@ import "./App.css";
 import Login from "./page/auth/login/Login";
 import Signup from "./page/auth/signup/Signup";
 import Brand from "./page/dashboard/brand/Brand";
-import Creator from "./page/dashboard/creator/Creator";
+import Creator, {
+  loader as AvailableCampaignLoader,
+} from "./page/dashboard/creator/Creator";
 import CreateCampaign, {
   createCampaignAction,
 } from "./components/createCampaign/CreateCampaign";
 import ContentUpload from "./components/contentUpload/ContentUpload";
-import Applicants from "./components/applicants/Applicants";
-import ApplyCampaign from "./page/applyCampaign/ApplyCampaign";
+import Applicants, { loader as applicantsLoader } from "./components/applicants/Applicants";
+import ApplyCampaign, {
+  action as applyCampaignAction,
+  loader as campaignDetailsLoader,
+} from "./page/applyCampaign/ApplyCampaign";
 import CampaignContentManagement from "./page/management/CampaignContentManagement";
 import { loader as campaignLoader } from "./components/campaign/CampaignSection";
 
@@ -30,10 +35,11 @@ function App() {
       ],
     },
     { path: "/brand/management/:id", element: <CampaignContentManagement /> },
-    { path: "/dashboard/brand/detail/:id", element: <Applicants /> },
+    { path: "/dashboard/brand/detail/:id", element: <Applicants />,loader:applicantsLoader },
     {
       path: "/dashboard/creator",
       element: <Creator />,
+      loader: AvailableCampaignLoader,
       children: [
         {
           path: "upload",
@@ -41,7 +47,12 @@ function App() {
         },
       ],
     },
-    { path: "/dashboard/creator/detail/:id", element: <ApplyCampaign /> },
+    {
+      path: "/dashboard/creator/detail/:id",
+      element: <ApplyCampaign />,
+      loader: campaignDetailsLoader,
+      action: applyCampaignAction,
+    },
   ]);
 
   return <RouterProvider router={router}></RouterProvider>;

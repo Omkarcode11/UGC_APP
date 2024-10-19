@@ -5,28 +5,31 @@ type Props = {
   name: string;
   applicants: number;
   status: string;
+  id: string;
 };
 
-function CampaignCard({ name, applicants, status }: Props) {
-let navigate = useNavigate()
+function CampaignCard({ name, applicants, status, id }: Props) {
+  let navigate = useNavigate();
   let cls = status == "active" ? classes.active : classes.completed;
 
-  let currentDate = new Date()
-  let selectedDate = new Date(status)
+  let currentDate = new Date();
+  let selectedDate = new Date(status);
 
-  let state = (currentDate.valueOf()>selectedDate.valueOf())?"completed":"active"
-  
+  let state =
+    currentDate.valueOf() > selectedDate.valueOf() ? "completed" : "active";
 
   return (
     <tr>
       <td>{name}</td>
-      <td className={classes.status} ><span className={cls}>
-        {state}
-        </span>
-        </td>
+      <td className={classes.status}>
+        <span className={cls}>{state}</span>
+      </td>
       <td>{applicants}</td>
       <td>
-        <button className={classes.btn} onClick={()=>navigate('detail/sdfsdaf')} >
+        <button
+          className={classes.btn}
+          onClick={() => navigate(`detail/${id}`)}
+        >
           Manage
         </button>
       </td>

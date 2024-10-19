@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
-  status: "Pending" | "Approved" | "Rejected";
+  status: "PENDING" | "APPROVED" | "REJECTED";
 };
 
 function AppliedCampaignCard({ title, status }: Props) {
   const navigate = useNavigate()
   let svg =
-    status == "Approved"
+    status == "APPROVED"
       ? approvedSVG
-      : status == "Pending"
+      : status == "PENDING"
       ? pendingSVG
       : rejectSVG;
 
@@ -22,7 +22,7 @@ function AppliedCampaignCard({ title, status }: Props) {
     <div className={classes.container}>
       <div>
         <h2>{title}</h2>
-        {status == "Approved" && <button className={classes.btn} onClick={()=>navigate('upload')}>Upload Content</button>}
+        {status == "APPROVED" && <button className={classes.btn} onClick={()=>navigate('upload')}>Upload Content</button>}
       </div>
       <p className={classes.status}>
         <img className={classes.image} src={svg} /> {status}

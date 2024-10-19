@@ -1,15 +1,23 @@
-import AppliedCampaignCard from '../cards/appliedCampaign/AppliedCampaignCard'
-import classes from './AppliedCampaign.module.css'
+import { useLoaderData } from "react-router-dom";
+import AppliedCampaignCard from "../cards/appliedCampaign/AppliedCampaignCard";
+import classes from "./AppliedCampaign.module.css";
 
-type Props = {}
+type Props = {};
 
 export default function AppliedCampaign({}: Props) {
+  let { appliedCampaigns } = useLoaderData() as any;
+  console.log(appliedCampaigns);
   return (
     <div className={classes.container}>
-        <h2 className={classes.title}>Applied Campaign</h2>
-        <AppliedCampaignCard status='Pending' title='Next.js'/>
-        <AppliedCampaignCard status='Approved' title='Next.js'/>
-        <AppliedCampaignCard status='Rejected' title='Next.js'/>
+      <h2 className={classes.title}>Applied Campaign</h2>
+
+      {appliedCampaigns &&
+        appliedCampaigns.map((ele: any) => (
+          <AppliedCampaignCard
+            status={ele.status}
+            title={ele.campaignId.title}
+          />
+        ))}
     </div>
-  )
+  );
 }
