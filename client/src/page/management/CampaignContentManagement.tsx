@@ -8,25 +8,27 @@ import toast from "react-hot-toast";
 type Props = {};
 
 function CampaignContentManagement({}: Props) {
-  let data = useLoaderData() as any
-  let submissions = data.campaign.submissions
-
-
+  let data = useLoaderData() as any;
+  let submissions = data.campaign.submissions;
+   if(!data){
+    return <h1>No Submission is there</h1>
+   }
   return (
     <div className={classes.container}>
       <h1>Campaign Management</h1>
 
-      {submissions.length && submissions.map((ele:any)=>
-      <ContentViewer
-        id= {ele._id}
-        name = {ele.applicationId.creatorId.name}
-        contentSrc={ele.contentUrl}
-        contentType={ele.contentUrl.includes("image")?'image':'video'}
-        status={ele.status}
-        onApprove={() => {}}
-        onReject={() => {}}
-        />
-      )}
+      {submissions.length &&
+        submissions.map((ele: any) => (
+          <ContentViewer
+            id={ele._id}
+            name={ele.applicationId.creatorId.name}
+            contentSrc={ele.contentUrl}
+            contentType={ele.contentUrl.includes("image") ? "image" : "video"}
+            status={ele.status}
+            onApprove={() => {}}
+            onReject={() => {}}
+          />
+        ))}
     </div>
   );
 }
@@ -45,7 +47,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     // Retrieve token from cookies (or headers, depending on your setup)
     // localStorage is client-side only and might not work in a loader function.
     // Adjust token retrieval method accordingly.
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
 
     // Make the API call with the token in Authorization headers
     let res = await axios.get(`${BASE_URL}/api/submission/${id}`, {
