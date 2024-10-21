@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { LoaderFunctionArgs, redirect, useLoaderData } from "react-router-dom";
 import ContentViewer from "../../components/contentViewer/ContentViewer";
 import classes from "./CampaignContentManagement.module.css";
 import axios from "axios";
@@ -10,9 +10,9 @@ type Props = {};
 function CampaignContentManagement({}: Props) {
   let data = useLoaderData() as any;
   let submissions = data.campaign.submissions;
-   if(!data){
-    return <h1>No Submission is there</h1>
-   }
+  if (!data) {
+    return <h1>No Submission is there</h1>;
+  }
   return (
     <div className={classes.container}>
       <h1>Campaign Management</h1>
@@ -39,9 +39,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   try {
     // Extract the ID from the request URL
     let id = request.url.split("/").pop();
-
-    if (!id) {
-      throw new Error("ID not found in the URL");
+    if (!id?.trim() || id.trim() == "management") {
+      toast.success("No Submission is there");
+      redirect("/dashboard/brand");
     }
 
     // Retrieve token from cookies (or headers, depending on your setup)

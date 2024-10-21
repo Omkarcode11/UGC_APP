@@ -95,12 +95,14 @@ const Applicants: React.FC = () => {
       <div className={styles.applicantsContainer}>
         <div className={styles.header}>
           <h2>{campaign.title}</h2>
+          {applicantsData.length ?
           <button
-            className={styles.management}
-            onClick={() => navigate(`/brand/management/${campaign.id}`)}
+          className={styles.management}
+          onClick={() => navigate(`/brand/management/${campaign.id}`)}
           >
             Content Management
           </button>
+          :<></>}
         </div>
         <div className={styles.description}>{campaign.description}</div>
 
