@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import CampaignCard from "../cards/campaign/CampaignCard";
 import classes from "./CampaignSection.module.css";
 import axios from "axios";

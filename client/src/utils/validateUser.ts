@@ -1,6 +1,4 @@
-interface ValidationResult {
-  [key: string]: string | null; // Each field can either be valid (null) or have an error message (string)
-}
+
 
 export function validateUserInput(obj: {
   name: string | undefined;

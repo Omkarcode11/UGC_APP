@@ -10,7 +10,6 @@ import {
   useLoaderData,
   useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../utils/constants";
 import toast from "react-hot-toast";
