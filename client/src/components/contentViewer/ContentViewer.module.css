@@ -23,6 +23,7 @@
   
   .content {
     object-fit: cover;
+    width: 90%;
   }
   
   .feedbackInput {

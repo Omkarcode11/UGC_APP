@@ -1,29 +1,27 @@
 .container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.innerContainer{
-
-    width: 100%;
-    border: 3px solid #e6e6e6;
-    border-radius: 1.5rem;
-    padding: 1rem;
+.innerContainer {
+  width: 100%;
+  border: 3px solid #e6e6e6;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  overflow-x: auto; /* Allows horizontal scrolling if the table is too wide */
 }
 
 .header {
-    padding: 1rem 0rem;
+  padding: 1rem 0rem;
 }
-
 
 .table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width:100%;
-
+  width: 100%; /* Ensure the table takes full width */
 }
 
 td,
@@ -32,13 +30,28 @@ th {
   text-align: center;
   padding: 8px;
   border-top: 1px solid #e6e6e6;
-
 }
 
 th {
-    background-color: #fafcfc;
-    color: #a6a7ab;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight:300;
+  background-color: #fafcfc;
+  color: #a6a7ab;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
 }
 
+@media screen and (max-width: 400px) {
+  .innerContainer {
+      border: none;
+  }
+  
+  .table {
+      width: 100%; /* Ensure the table adapts to smaller screens */
+      display: block; /* Block layout to ensure proper scrolling */
+      overflow-x: auto; /* Add horizontal scrolling for mobile */
+  }
+  
+  td,
+  th {
+      white-space: nowrap; /* Prevent table text from breaking into new lines */
+  }
+}

@@ -75,7 +75,7 @@ export const submission = async (req: Request, res: Response) => {
 export const updateSubmissionStatus = async (req: Request, res: Response) => {
   try {
     const { submissionId } = req.params;
-    const { status } = req.body;
+    const { status, feedback } = req.body;
 
     // Validate if status is provided
     if (!status) {
@@ -86,7 +86,7 @@ export const updateSubmissionStatus = async (req: Request, res: Response) => {
     // Update the submission status using `findOneAndUpdate`
     const updatedSubmission = await Submission.findOneAndUpdate(
       { _id: submissionId },
-      { status },
+      { status, feedback },
       { new: true } // Return the updated document
     );
 
@@ -109,43 +109,43 @@ export const updateSubmissionStatus = async (req: Request, res: Response) => {
   return;
 };
 
-
 export const getAllCampaignSubmission = async (req: Request, res: Response) => {
-    try {
-      const { campaignId } = req.params;
-  
-      // Validate campaignId
-      if (!campaignId) {
-        return
-         res.status(400).json({ message: "Campaign ID is required" });
-      }
-  
-      // Fetch campaign submissions with optimized population
-      const campaign = await Campaign.findById(campaignId)
-        .select('submissions status')
-        .populate({
-          path: 'submissions',
-          select: 'applicationId status submittedAt contentUrl',
-          populate: {
-            path: 'applicationId',
-            select: 'creatorId status',
-            populate: {
-              path: 'creatorId',
-              select: 'name',
-            },
-          },
-        });
-  
-      // Check if campaign exists
-      if (!campaign) {
-          res.status(404).json({ message: "Campaign not found" });
-          return 
-      }
-  
-      res.status(200).json({ campaign });
-      return 
-    } catch (error) {
-      console.error("Error fetching campaign submissions:", error);
-      res.status(500).json({ message: "Server error", error });
+  try {
+    const { campaignId } = req.params;
+
+    // Validate campaignId
+    if (!campaignId) {
+      res.status(400).json({ message: "Campaign ID is required" });
+      return;
     }
-  };
+
+    // Fetch campaign submissions with optimized population
+    const campaign = await Campaign.findById(campaignId)
+      .select("submissions status")
+      .populate({
+        path: "submissions",
+        select: "applicationId status submittedAt contentUrl",
+        populate: {
+          path: "applicationId",
+          select: "creatorId status",
+          populate: {
+            path: "creatorId",
+            select: "name",
+          },
+        },
+      });
+
+    // Check if campaign exists
+    if (!campaign) {
+      res.status(404).json({ message: "Campaign not found" });
+      return;
+    }
+
+    res.status(200).json({ campaign });
+    return;
+  } catch (error) {
+    console.error("Error fetching campaign submissions:", error);
+    res.status(500).json({ message: "Server error", error });
+    return;
+  }
+};

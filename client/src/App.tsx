@@ -17,7 +17,7 @@ import ApplyCampaign, {
   action as applyCampaignAction,
   loader as campaignDetailsLoader,
 } from "./page/applyCampaign/ApplyCampaign";
-import CampaignContentManagement from "./page/management/CampaignContentManagement";
+import CampaignContentManagement, { loader as submissionLoader } from "./page/management/CampaignContentManagement";
 import { loader as campaignLoader } from "./components/campaign/CampaignSection";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
         },
       ],
     },
-    { path: "/brand/management/:id", element: <CampaignContentManagement /> },
+    { path: "/brand/management/:id", element: <CampaignContentManagement /> ,loader:submissionLoader},
     {
       path: "/dashboard/brand/detail/:id",
       element: <Applicants />,

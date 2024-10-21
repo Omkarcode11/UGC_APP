@@ -96,7 +96,7 @@ const Applicants: React.FC = () => {
           <h2>{campaign.title}</h2>
           <button
             className={styles.management}
-            onClick={() => navigate("/brand/management/sdfsadf")}
+            onClick={() => navigate(`/brand/management/${campaign.id}`)}
           >
             Content Management
           </button>

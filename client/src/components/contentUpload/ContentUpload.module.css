@@ -35,9 +35,11 @@
   }
   
   .img {
-    max-width: 100%;
+    max-width: 90%;
+    height: 25rem;
     border: 1px solid #ccc;
     border-radius: 8px;
+    object-fit: contain;
   }
   
   .video {
