@@ -27,7 +27,7 @@ const ContentViewer: React.FC<ContentViewerProps> = ({
 
   async function handleUpdateSubmissionStatus(status: "APPROVED" | "REJECTED") {
     try {
-      debugger
+      
       const token = localStorage.getItem("token");
       const res = await axios.post(
         `${BASE_URL}/api/submission/updateSubmission/${id}`,

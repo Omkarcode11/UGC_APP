@@ -120,4 +120,5 @@ export const createCampaignAction = async ({ request }: ActionFunctionArgs) => {
     console.error(error);
     toast.error("Error creating campaign");
   }
+  return null
 };
