@@ -10,6 +10,8 @@ export interface ICampaign extends Document {
   description: string;
   deadline: Date;
   applications: mongoose.Types.ObjectId[];
+  submissions: mongoose.Types.ObjectId[];
+  
 }
 
 // Create the Campaign schema
@@ -41,6 +43,7 @@ const CampaignSchema: Schema = new Schema(
         ref: "Application",
       },
     ],
+    submissions: [{ type: Schema.Types.ObjectId, ref: "Submission" }],
   },
   {
     timestamps: true, // Adds createdAt and updatedAt fields automatically

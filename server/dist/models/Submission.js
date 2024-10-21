@@ -33,7 +33,7 @@ const SubmissionSchema = new mongoose_1.Schema({
     },
     applicationId: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Application',
+        ref: "Application",
         required: true,
     },
     contentUrl: {
@@ -42,15 +42,18 @@ const SubmissionSchema = new mongoose_1.Schema({
     },
     status: {
         type: String,
-        enum: ['PENDING', 'APPROVED', 'REJECTED'],
-        default: 'PENDING',
+        enum: ["PENDING", "APPROVED", "REJECTED"],
+        default: "PENDING",
     },
     submittedAt: {
         type: Date,
         default: Date.now,
     },
+    feedback: {
+        type: String,
+    },
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
 });
-exports.Submission = mongoose_1.default.model('Submission', SubmissionSchema);
+exports.Submission = mongoose_1.default.model("Submission", SubmissionSchema);
 //# sourceMappingURL=Submission.js.map

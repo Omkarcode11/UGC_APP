@@ -5,7 +5,7 @@ import {
   getApplicants,
   getMyCampaign,
   updateApplicationStatus,
-} from "../controllers/compaign.controller";
+} from "../controllers/campaign.controller";
 import { verifyToken } from "../middleware/verifyToken";
 import { isBrand } from "../middleware/isBrand";
 
@@ -22,10 +22,6 @@ router.get('/applicants/:id',verifyToken,isBrand,getApplicants)
 
 //Change the Applicants Status 
 router.post('/updateStatus/:id',verifyToken,isBrand,updateApplicationStatus)
-// Apply to Campaign (Creator)
-// router.post("/:campaignId/apply", applyCampaign);
 
-// Upload UGC Content (Creator)
-// router.post("/:campaignId/submit", applyCampaign);
 
 export default router;

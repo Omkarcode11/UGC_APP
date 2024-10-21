@@ -10,7 +10,9 @@ import CreateCampaign, {
   createCampaignAction,
 } from "./components/createCampaign/CreateCampaign";
 import ContentUpload from "./components/contentUpload/ContentUpload";
-import Applicants, { loader as applicantsLoader } from "./components/applicants/Applicants";
+import Applicants, {
+  loader as applicantsLoader,
+} from "./components/applicants/Applicants";
 import ApplyCampaign, {
   action as applyCampaignAction,
   loader as campaignDetailsLoader,
@@ -35,14 +37,18 @@ function App() {
       ],
     },
     { path: "/brand/management/:id", element: <CampaignContentManagement /> },
-    { path: "/dashboard/brand/detail/:id", element: <Applicants />,loader:applicantsLoader },
+    {
+      path: "/dashboard/brand/detail/:id",
+      element: <Applicants />,
+      loader: applicantsLoader,
+    },
     {
       path: "/dashboard/creator",
       element: <Creator />,
-      loader: AvailableCampaignLoader,
+      loader: AvailableCampaignLoader, // Loader at the parent (Creator) level if it needs campaigns
       children: [
         {
-          path: "upload",
+          path: "upload/:id",
           element: <ContentUpload allowedFileTypes={["image", "video"]} />,
         },
       ],

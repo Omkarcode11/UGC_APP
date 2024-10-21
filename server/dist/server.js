@@ -14,18 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const auth_1 = __importDefault(require("./routes/auth"));
-const campaign_1 = __importDefault(require("./routes/campaign"));
+const auth_route_1 = __importDefault(require("./routes/auth.route"));
+const campaign_route_1 = __importDefault(require("./routes/campaign.route"));
 const creator_route_1 = __importDefault(require("./routes/creator.route"));
+const submission_route_1 = __importDefault(require("./routes/submission.route"));
 const config_1 = require("./config/config");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use("/api/auth", auth_1.default);
-app.use("/api/campaigns", campaign_1.default);
+app.use("/api/auth", auth_route_1.default);
+app.use("/api/campaigns", campaign_route_1.default);
 app.use("/api/creator", creator_route_1.default);
+app.use("/api/submission", submission_route_1.default);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, config_1.connectDB)();

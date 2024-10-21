@@ -16,6 +16,8 @@ export default function AppliedCampaign({}: Props) {
           <AppliedCampaignCard
             status={ele.status}
             title={ele.campaignId.title}
+            id={ele._id}
+            key = {ele._id}
           />
         ))}
     </div>

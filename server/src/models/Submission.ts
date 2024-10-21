@@ -1,10 +1,10 @@
-import mongoose, { Schema, Document } from 'mongoose';
-import { Application } from './Application';
+import mongoose, { Schema, Document } from "mongoose";
+import { Application } from "./Application";
 
 export interface ISubmission extends Document {
   applicationId: mongoose.Types.ObjectId;
   contentUrl: string;
-  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  status: "PENDING" | "APPROVED" | "REJECTED";
   submittedAt: Date;
 }
 
@@ -17,7 +17,7 @@ const SubmissionSchema: Schema = new Schema(
     },
     applicationId: {
       type: Schema.Types.ObjectId,
-      ref: 'Application',
+      ref: "Application",
       required: true,
     },
     contentUrl: {
@@ -26,12 +26,15 @@ const SubmissionSchema: Schema = new Schema(
     },
     status: {
       type: String,
-      enum: ['PENDING', 'APPROVED', 'REJECTED'],
-      default: 'PENDING',
+      enum: ["PENDING", "APPROVED", "REJECTED"],
+      default: "PENDING",
     },
     submittedAt: {
       type: Date,
       default: Date.now,
+    },
+    feedback: {
+      type: String,
     },
   },
   {
@@ -39,4 +42,7 @@ const SubmissionSchema: Schema = new Schema(
   }
 );
 
-export const Submission = mongoose.model<ISubmission>('Submission', SubmissionSchema);
+export const Submission = mongoose.model<ISubmission>(
+  "Submission",
+  SubmissionSchema
+);

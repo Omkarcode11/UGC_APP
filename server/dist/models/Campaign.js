@@ -53,6 +53,7 @@ const CampaignSchema = new mongoose_1.Schema({
             ref: "Application",
         },
     ],
+    submissions: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Submission" }],
 }, {
     timestamps: true, // Adds createdAt and updatedAt fields automatically
 });
