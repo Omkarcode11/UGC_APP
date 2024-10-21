@@ -10,14 +10,15 @@ type Props = {
 
 function CampaignCard({ name, applicants, status, id }: Props) {
   let navigate = useNavigate();
-  let cls = status == "active" ? classes.active : classes.completed;
-
+  console.log(status)
+  
   let currentDate = new Date();
   let selectedDate = new Date(status);
-
+  
   let state =
-    currentDate.valueOf() > selectedDate.valueOf() ? "completed" : "active";
-
+  currentDate.valueOf() > selectedDate.valueOf() ? "completed" : "active";
+  
+  let cls = state == "active" ? classes.active : classes.completed;
   return (
     <tr>
       <td>{name}</td>
