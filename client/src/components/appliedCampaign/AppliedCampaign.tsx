@@ -6,7 +6,6 @@ type Props = {};
 
 export default function AppliedCampaign({}: Props) {
   let { appliedCampaigns } = useLoaderData() as any;
-  console.log(appliedCampaigns);
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>Applied Campaign</h2>

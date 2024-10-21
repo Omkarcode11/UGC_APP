@@ -17,7 +17,6 @@ type Campaign = {
 
 function CampaignSection({}: Props) {
   const campaigns = useLoaderData() as Campaign[]; // Cast to Campaign[]
-  console.log(campaigns);
 
   return (
     <div className={classes.container}>
@@ -58,7 +57,6 @@ function CampaignSection({}: Props) {
 export default CampaignSection;
 
 export async function loader() {
-  console.log("Loader called"); // Log loader calls
   try {
     const token = localStorage.getItem("token");
 

@@ -10,7 +10,6 @@ type Props = {
 
 function CampaignCard({ name, applicants, status, id }: Props) {
   let navigate = useNavigate();
-  console.log(status)
   
   let currentDate = new Date();
   let selectedDate = new Date(status);

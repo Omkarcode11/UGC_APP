@@ -39,7 +39,6 @@ export const login = async (req: any, res: any) => {
   if (!(await bcrypt.compare(password, user.passwordHash))) {
     return res.status(401).json({ message: "Incorrect Password" });
   }
-  console.log(role, user.role);
   if (role != user.role)
     return res.status(400).json({ message: "Role is invalid" });
 

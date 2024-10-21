@@ -9,7 +9,6 @@ type Props = {};
 
 function CampaignContentManagement({}: Props) {
   let data = useLoaderData() as any
-  console.log(data)
   let submissions = data.campaign.submissions
 
 

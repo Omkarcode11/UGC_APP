@@ -105,7 +105,6 @@ export const createCampaignAction = async ({ request }: ActionFunctionArgs) => {
 
   try {
     // Make API request with axios
-    console.log("still here working ");
     const res = await axios.post(`${BASE_URL}/api/campaigns`, obj, {
       headers: {
         Authorization: `Bearer ${token}`, // Use token for authorization

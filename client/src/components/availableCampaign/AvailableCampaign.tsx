@@ -14,7 +14,6 @@ type Campaign = {
 
 function AvailableCampaign({}: Props) {
   let {campaign}  = useLoaderData() as any;
-  console.log(campaign, "from creator");
   return (
     <div className={classes.container}>
       <h2 className={classes.header}>Available Campaign</h2>
