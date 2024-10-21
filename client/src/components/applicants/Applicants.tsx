@@ -92,6 +92,7 @@ const Applicants: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <h3 onClick={()=>navigate('/dashboard/brand')}>Go back</h3>
       <div className={styles.applicantsContainer}>
         <div className={styles.header}>
           <h2>{campaign.title}</h2>

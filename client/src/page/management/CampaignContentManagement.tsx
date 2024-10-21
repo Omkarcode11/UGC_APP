@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, redirect, useLoaderData } from "react-router-dom";
+import { LoaderFunctionArgs, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import ContentViewer from "../../components/contentViewer/ContentViewer";
 import classes from "./CampaignContentManagement.module.css";
 import axios from "axios";
@@ -9,12 +9,14 @@ type Props = {};
 
 function CampaignContentManagement({}: Props) {
   let data = useLoaderData() as any;
+  const navigate = useNavigate()
   let submissions = data.campaign.submissions;
   if (!data) {
     return <h1>No Submission is there</h1>;
   }
   return (
     <div className={classes.container}>
+      <h3 onClick={()=>navigate('/dashboard/brand')}>Go Back</h3>
       <h1>Campaign Management</h1>
 
       {submissions.length &&
