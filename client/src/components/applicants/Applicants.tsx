@@ -3,6 +3,7 @@ import styles from "./Applicants.module.css";
 import ApplicantCard from "../cards/applicants/ApplicantCard";
 import {
   LoaderFunctionArgs,
+  redirect,
   useLoaderData,
   useNavigate,
 } from "react-router-dom";
@@ -126,6 +127,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
     // Extract ID from URL and token from localStorage
     let id = request.url.split("/").pop();
     let token = localStorage.getItem("token");
+
+    if (!token) {
+      toast.error("Your not Login or Session is Expire")
+      return redirect('/')
+    }
 
     // Check if id and token are present
     if (!id) {

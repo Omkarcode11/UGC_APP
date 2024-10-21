@@ -5,6 +5,7 @@ import {
   ActionFunctionArgs,
   Form,
   LoaderFunctionArgs,
+  redirect,
   useActionData,
   useLoaderData,
   useNavigate,
@@ -92,6 +93,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const id = url.pathname.split("/").pop();
     let token = localStorage.getItem("token");
 
+    if (!token) {
+      toast.error("Your not Login or Session is Expire")
+      return redirect('/')
+    }
+
     // Validate that we have a valid ID
     if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
       throw new Error("Invalid campaign ID.");
@@ -137,6 +143,10 @@ export async function action({ request }: ActionFunctionArgs) {
 
     // Get token from localStorage
     const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Your not Login or Session is Expire")
+      return redirect('/')
+    }
     if (!token) {
       throw new Error("Authentication token is missing.");
     }

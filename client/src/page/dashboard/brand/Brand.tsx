@@ -14,6 +14,7 @@ function Brand({}: Props) {
     <h1>Brand Dashboard</h1>
     <button className={classes.createBtn} onClick={()=>navigate('create')}><img className={classes.image} src={createSVG}/> Create Campaign</button>
      </header>
+    <p className={classes.logout} onClick={()=>navigate('/logout')}>Logout</p>
      <CampaignSection/>
     </div>
     <Outlet/>

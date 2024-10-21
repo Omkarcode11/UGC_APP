@@ -78,7 +78,15 @@ export default CreateCampaign;
 // routes.js or wherever your routes are defined
 
 export const createCampaignAction = async ({ request }: ActionFunctionArgs) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    toast.error("Your not Login or Session is Expire");
+    return redirect("/");
+  }
+
   const data = await request.formData();
+
   const obj = {
     title: data.get("title")?.toString().trim(),
     description: data.get("description")?.toString().trim(),
@@ -92,13 +100,12 @@ export const createCampaignAction = async ({ request }: ActionFunctionArgs) => {
     toast.error(isValid); // Display a validation error
     return null; // Prevent navigation
   }
-  
+
   // Get token from localStorage
-  const token = localStorage.getItem("token");
-  
+
   try {
     // Make API request with axios
-    console.log('still here working ')
+    console.log("still here working ");
     const res = await axios.post(`${BASE_URL}/api/campaigns`, obj, {
       headers: {
         Authorization: `Bearer ${token}`, // Use token for authorization

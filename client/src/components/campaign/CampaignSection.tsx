@@ -4,7 +4,7 @@ import classes from "./CampaignSection.module.css";
 import axios from "axios";
 import { BASE_URL } from "../../utils/constants";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 
 type Props = {};
 
@@ -12,12 +12,12 @@ type Campaign = {
   title: string;
   applicationsCount: number;
   deadline: string;
-  id:string
+  id: string;
 };
 
 function CampaignSection({}: Props) {
   const campaigns = useLoaderData() as Campaign[]; // Cast to Campaign[]
-  console.log(campaigns)
+  console.log(campaigns);
 
   return (
     <div className={classes.container}>
@@ -61,6 +61,12 @@ export async function loader() {
   console.log("Loader called"); // Log loader calls
   try {
     const token = localStorage.getItem("token");
+
+    if (!token) {
+      toast.error("Your not Login or Session is Expire")
+      return redirect('/')
+    }
+
     const response = await axios.get(`${BASE_URL}/api/campaigns`, {
       headers: { Authorization: `Bearer ${token}` },
     });

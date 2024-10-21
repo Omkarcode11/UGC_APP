@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import AppliedCampaign from "../../../components/appliedCampaign/AppliedCampaign";
 import AvailableCampaign from "../../../components/availableCampaign/AvailableCampaign";
 import classes from "./Creator.module.css";
@@ -24,7 +24,10 @@ export default Creator;
 export async function loader() {
   try {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication token is missing.");
+    if (!token) {
+      toast.error("Your not Login or Session is Expire")
+      return redirect('/')
+    }
 
     const [availableCampaignsRes, appliedCampaignsRes] = await Promise.all([
       axios.get(`${BASE_URL}/api/creator/campaign/available`, {

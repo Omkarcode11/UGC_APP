@@ -17,12 +17,21 @@ import ApplyCampaign, {
   action as applyCampaignAction,
   loader as campaignDetailsLoader,
 } from "./page/applyCampaign/ApplyCampaign";
-import CampaignContentManagement, { loader as submissionLoader } from "./page/management/CampaignContentManagement";
+import CampaignContentManagement, {
+  loader as submissionLoader,
+} from "./page/management/CampaignContentManagement";
 import { loader as campaignLoader } from "./components/campaign/CampaignSection";
+import { loader as logout } from "./page/auth/logout/Logout";
+import ErrorPage from "./page/error/ErrorPage";
 
 function App() {
   let router = createBrowserRouter([
-    { path: "/", element: <Login /> },
+    {
+      path: "/",
+      element: <Login />,
+      errorElement: <ErrorPage />,
+      children: [{ path: "logout", loader: logout }],
+    },
     { path: "/signup", element: <Signup /> },
     {
       path: "/dashboard/brand",
@@ -36,7 +45,11 @@ function App() {
         },
       ],
     },
-    { path: "/brand/management/:id", element: <CampaignContentManagement /> ,loader:submissionLoader},
+    {
+      path: "/brand/management/:id",
+      element: <CampaignContentManagement />,
+      loader: submissionLoader,
+    },
     {
       path: "/dashboard/brand/detail/:id",
       element: <Applicants />,
