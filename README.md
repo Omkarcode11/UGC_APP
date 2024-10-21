@@ -39,7 +39,7 @@ This is the frontend application for a platform where **brands** can create camp
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/client-app.git
+   git clone https://github.com/Omkarcode11/UGC_APP.git
    cd client-app
    ```
 
@@ -58,15 +58,20 @@ This is the frontend application for a platform where **brands** can create camp
    npm run build
    ```
 
-5. To preview the production build:
+5. Start the Backend server:
+   ```bash 
+   cd server
+   ```
+6. Install dependencies:
+    ```bash
+   npm install
+   ```
+7. Start the development server:
    ```bash
-   npm run preview
+   npm run build
+   npm start
    ```
 
-6. To run the linter:
-   ```bash
-   npm run lint
-   ```
 
 ## Project Structure
 
@@ -75,10 +80,6 @@ This is the frontend application for a platform where **brands** can create camp
 ├── src/
 │   ├── components/        # Reusable UI components
 │   ├── pages/             # Pages corresponding to routes
-│   ├── api/               # Axios-based API requests
-│   ├── hooks/             # Custom React hooks
-│   ├── context/           # Context API for managing global state
-│   ├── styles/            # Global styles
 │   └── App.tsx            # Main App component
 ├── .eslintrc.js           # ESLint configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -97,8 +98,6 @@ VITE_API_URL=<BACKEND_ENDPOINT>
 
 - `npm run dev`: Starts the development server using Vite.
 - `npm run build`: Builds the app for production using Vite and TypeScript.
-- `npm run lint`: Runs ESLint to check code quality.
-- `npm run preview`: Previews the production build locally.
 
 ## Dependencies
 
@@ -136,4 +135,3 @@ VITE_API_URL=<BACKEND_ENDPOINT>
    - The creator registers or logs into the app.
    - Creators can browse all active campaigns and apply for the ones they are interested in.
    - Upon approval by the brand, creators can upload their content via Cloudinary.
-
