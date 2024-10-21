@@ -1,6 +1,3 @@
-Here’s a `README.md` file for your project:
-
-```markdown
 # Client Application
 
 This is the frontend application for a platform where **brands** can create campaigns, and **creators** can apply to those campaigns, upload content, and manage their applications.
