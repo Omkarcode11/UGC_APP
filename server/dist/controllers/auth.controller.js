@@ -48,7 +48,6 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!(yield bcrypt_1.default.compare(password, user.passwordHash))) {
         return res.status(401).json({ message: "Incorrect Password" });
     }
-    console.log(role, user.role);
     if (role != user.role)
         return res.status(400).json({ message: "Role is invalid" });
     const token = jsonwebtoken_1.default.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET);
