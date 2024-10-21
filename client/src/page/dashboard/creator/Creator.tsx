@@ -1,4 +1,4 @@
-import { Outlet, redirect } from "react-router-dom";
+import { Outlet, redirect, useNavigate } from "react-router-dom";
 import AppliedCampaign from "../../../components/appliedCampaign/AppliedCampaign";
 import AvailableCampaign from "../../../components/availableCampaign/AvailableCampaign";
 import classes from "./Creator.module.css";
@@ -9,9 +9,11 @@ import toast from "react-hot-toast";
 type Props = {};
 
 function Creator({}: Props) {
+  let navigate = useNavigate()
   return (
     <div className={classes.container}>
       <h1>Creator Dashboard</h1>
+      <p onClick={()=>navigate('/logout')} className={classes.logout}>Logout</p>
       <AvailableCampaign />
       <AppliedCampaign />
       <Outlet />
