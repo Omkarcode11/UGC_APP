@@ -90,8 +90,7 @@ This is the frontend application for a platform where **brands** can create camp
 To use the Cloudinary API, ensure that the following environment variables are set in your `.env` file:
 
 ```env
-REACT_APP_CLOUDINARY_CLOUD_NAME=<your_cloud_name>
-REACT_APP_CLOUDINARY_UPLOAD_PRESET=<your_upload_preset>
+VITE_API_URL=<BACKEND_ENDPOINT>
 ```
 
 ## Scripts
